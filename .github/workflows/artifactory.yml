@@ -1,1 +1,16 @@
-
+name: artifactory push
+on: [push]
+env:
+  filename: push-code-test
+jobs:
+  build:
+    name: job to test uploads
+    runs-on: ubuntu-latest
+    steps:
+      - name: code checkout step
+        uses: actions/checkout@v2
+      - name: push code for ${{env.filename}}
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{env.filename}}
+          path: .
